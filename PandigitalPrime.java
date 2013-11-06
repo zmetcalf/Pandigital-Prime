@@ -6,7 +6,7 @@ public class PandigitalPrime
     public void findAndPrintHighestPandigital() {
         long highestPandigitalPrime = 0;
 
-        for(long i = 1000000001L; i < 4000000001L; i += 2) {
+        for(long i = 3L; i < 1000000001L; i += 2) {
             if(checkPandigital(Long.toString(i))) {
                 if(checkPrime(i)) {
                     highestPandigitalPrime = i;
@@ -18,9 +18,20 @@ public class PandigitalPrime
     }
 
     private boolean checkPandigital(String checkPan) {
-        for(int i = 0; i <= 9; i++) {
-            if(checkPan.contains(Integer.toString(i)) == false) {
+        char[] checkArray = checkPan.toCharArray();
+        int counter = 0;
+
+        for(char checkChar : checkArray) {
+            for(int i = 0; i < checkPan.length(); i++) {
+                if(checkChar == checkPan.charAt(i)) {
+                    counter++;
+                }
+            }
+            if(counter > 1) {
                 return false;
+            }
+            else {
+                counter = 0;
             }
         }
         return true;
@@ -36,7 +47,7 @@ public class PandigitalPrime
 
         maxCheck = Math.sqrt((double) checkNum);
 
-        while(i <=maxCheck) {
+        while(i <= maxCheck) {
             if(checkNum % i == 0) {
                 return false;
             }
