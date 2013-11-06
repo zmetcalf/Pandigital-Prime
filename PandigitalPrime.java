@@ -4,21 +4,21 @@ public class PandigitalPrime
     }
 
     public void findAndPrintHighestPandigital() {
-        int highestPandigitalPrime = 0;
+        long highestPandigitalPrime = 0;
 
-        for(int i = 3; i < 9876543210; i += 2) {
-            if(checkPrime(i)) {
-                if(checkPandigital(Integer.toString(i))) {
+        for(long i = 1000000001L; i < 4000000001L; i += 2) {
+            if(checkPandigital(Long.toString(i))) {
+                if(checkPrime(i)) {
                     highestPandigitalPrime = i;
                 }
             }
         }
-        System.out.printf("The highest prime pandigital is %d",
+        System.out.printf("The highest prime pandigital is %d\n",
                           highestPandigitalPrime);
     }
 
     private boolean checkPandigital(String checkPan) {
-        for(int i = 1; i <= checkPan.length(); i++) {
+        for(int i = 0; i <= 9; i++) {
             if(checkPan.contains(Integer.toString(i)) == false) {
                 return false;
             }
@@ -26,8 +26,8 @@ public class PandigitalPrime
         return true;
     }
 
-    private boolean checkPrime(int checkNum) {
-        int i = 2;
+    private boolean checkPrime(long checkNum) {
+        long i = 2;
         double maxCheck;
 
         if(checkNum == 1) {
